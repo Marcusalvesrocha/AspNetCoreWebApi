@@ -25,6 +25,6 @@ namespace SmartSchool.WebAPI.Models
 
         public string? Telefone { get; set; }
 
-        public IEnumerator<AlunoDisciplina>? AlunosDiciplinas { get; set; }
+        public List<AlunoDisciplina>? AlunosDiciplinas { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace SmartSchool.WebAPI.Controllers
     [Route("api/[controller]")]
     public class ProfessorController : ControllerBase
     {
+        
         public ProfessorController()
         {
             

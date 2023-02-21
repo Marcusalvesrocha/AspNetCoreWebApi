@@ -23,6 +23,6 @@ namespace SmartSchool.WebAPI.Models
 
         public Professor Professor { get; set; }
 
-        public IEnumerator<AlunoDisciplina> AlunosDiciplinas { get; set; }
+        public List<AlunoDisciplina> AlunosDiciplinas { get; set; }
     }
 }
