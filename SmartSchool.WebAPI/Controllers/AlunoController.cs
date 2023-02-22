@@ -16,9 +16,12 @@ namespace SmartSchool.WebAPI.Controllers
     public SmartContext Context { get; }
 
         private readonly SmartContext _context;
+        private readonly IRepository _repository;
        
-        public AlunoController(SmartContext context) {
+        public AlunoController(SmartContext context,
+                               IRepository repository) {
            _context = context;
+           _repository = repository;
         }
 
         [HttpGet]
@@ -44,9 +47,8 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost]
         public IActionResult Post(Aluno aluno)
         {
-            _context.Add(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _repository.Add(aluno);
+            return _repository.SaveChanges() ? Ok(aluno) : BadRequest("Aluno não cadastrado");
         }
 
         [HttpPut("{id}")]
@@ -54,9 +56,8 @@ namespace SmartSchool.WebAPI.Controllers
         {
             var alunoPut = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
             if(alunoPut == null) return BadRequest("Aluno não encontrado");
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _repository.Update(aluno);
+            return _repository.SaveChanges() ? Ok(aluno) : BadRequest("Aluno não Atualizado");
         }
 
         [HttpPatch("{id}")]
@@ -64,9 +65,8 @@ namespace SmartSchool.WebAPI.Controllers
         {
             var alunoPatch = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
             if(alunoPatch == null) return BadRequest("Aluno não encontrado");
-            _context.Update(aluno);
-            _context.SaveChanges();
-            return Ok(aluno);
+            _repository.Update(aluno);
+            return _repository.SaveChanges() ? Ok(aluno) : BadRequest("Aluno não Atualizado");
         }
 
         [HttpDelete("{id}")]
@@ -74,9 +74,8 @@ namespace SmartSchool.WebAPI.Controllers
         {
             var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
             if (aluno == null) return BadRequest("Aluno não encontrado");
-            _context.Remove(aluno);
-            _context.SaveChanges();
-            return Ok();
+             _repository.Delete(aluno);
+            return _repository.SaveChanges() ? Ok("aluno deletado") : BadRequest("Aluno não Atualizado");
         }
     }
 }

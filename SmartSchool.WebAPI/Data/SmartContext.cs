@@ -30,6 +30,7 @@ namespace SmartSchool.WebAPI.Data
                 .HasOne(ad => ad.Disciplina)
                 .WithMany(d => d.AlunosDiciplinas)
                 .HasForeignKey(d => d.DisciplinaId);
+                
 
             builder.Entity<Professor>()
                 .HasData(new List<Professor>(){
