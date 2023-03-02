@@ -19,13 +19,13 @@ namespace SmartSchool.WebAPI.Models
             this.DataNascimento = dataNascimento;
         }
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
         
         public int Matricula { get; set; }
 
-        public string? Nome { get; set; }
+        public string Nome { get; set; }
 
-        public string? Sobrenome { get; set; }
+        public string Sobrenome { get; set; }
 
         public string Telefone { get; set; }
 

@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -14,15 +16,19 @@ namespace SmartSchool.WebAPI.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repository;
+        private readonly  IMapper _mapper;
        
-        public AlunoController(IRepository repository) {
+        public AlunoController(IRepository repository, IMapper mapper) {
            _repository = repository;
+           _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repository.GetAllAlunos(true));
+            var alunos = _repository.GetAllAlunos(true);
+            
+            return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
         [HttpGet("{id}")]
