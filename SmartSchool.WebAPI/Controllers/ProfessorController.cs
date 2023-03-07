@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool.WebAPI.Data;
+using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
@@ -13,22 +15,28 @@ namespace SmartSchool.WebAPI.Controllers
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repository;
-        public ProfessorController(IRepository repository)
+        private readonly IMapper _mapper;
+        public ProfessorController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repository.GetAllProfessores(true));
+            var professores = _repository.GetAllProfessores(true);
+
+            return Ok(_mapper.Map<IEnumerable<ProfessorDto>>(professores));
         }
         
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var professor = _repository.GetAllProfessoresByDisciplinaId(id);
-            return professor == null ? BadRequest("Professor não encontrado") : Ok(professor);
+            var professor = _repository.GetProfessoreById(id);
+            return professor == null 
+                ? BadRequest("Professor não encontrado") 
+                : Ok(_mapper.Map<ProfessorDto>(professor));
         }
 
         [HttpPost]

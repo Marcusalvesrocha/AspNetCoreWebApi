@@ -21,9 +21,19 @@ namespace SmartSchool.WebAPI.Helpers
               dest => dest.Idade,
               opt => opt.MapFrom(src => src.DataNascimento.GetCurrencyAge())
             );
-
           CreateMap<AlunoDto, Aluno>();
           CreateMap<Aluno, AlunoRegistrarDto>().ReverseMap();
+
+          CreateMap<Professor, ProfessorDto>()
+            .ForMember(
+              dest => dest.NomeCompleto,
+              opt =>opt.MapFrom(src => $"{src.Nome} {src.Sobrenome}")
+            )
+            .ForMember(
+              dest => dest.TempoLecionando,
+              opt => opt.MapFrom(src => src.DataInicio.GetCurrencyAge())
+            );
+          CreateMap<ProfessorDto, Professor>();
         }
     }
 }
