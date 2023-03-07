@@ -34,6 +34,7 @@ namespace SmartSchool.WebAPI.Helpers
               opt => opt.MapFrom(src => src.DataInicio.GetCurrencyAge())
             );
           CreateMap<ProfessorDto, Professor>();
+          CreateMap<Professor, ProfessorRegistrarDto>().ReverseMap();
         }
     }
 }
