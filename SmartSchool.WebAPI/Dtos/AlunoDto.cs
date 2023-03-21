@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace SmartSchool.WebAPI.Dtos
 {
+    ///<summary>
+    /// Dto de view de Aluno
+    ///</summary>
     public class AlunoDto
     {
+        ///<summary>
+        /// Identificador Id do Aluno
+        ///</summary>
         public int Id { get; set; }
         
         public int Matricula { get; set; }

@@ -11,18 +11,26 @@ using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
+    ///
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repository;
         private readonly  IMapper _mapper;
        
+        ///<summary>
+        ///
+        ///</summary>
         public AlunoController(IRepository repository, IMapper mapper) {
            _repository = repository;
            _mapper = mapper;
         }
 
+        /// <summary>
+        ///     Método responsável por retornar todos os alunos
+        /// </summary>
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,11 +39,17 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
         }
 
+        /// <summary>
+        ///     Método responsável por retornar um AlunoDTO
+        /// </summary>
         [HttpGet("getRegistrar")]
         public IActionResult getRegister(){
             return Ok(new AlunoRegistrarDto());
         }
 
+        /// <summary>
+        ///     Método responsável por retornar um Auno por ID
+        /// </summary>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -45,6 +59,9 @@ namespace SmartSchool.WebAPI.Controllers
                 : Ok(_mapper.Map<AlunoDto>(aluno));
         }
 
+        /// <summary>
+        ///     Método para inserir aluno
+        /// </summary>
         [HttpPost]
         public IActionResult Post(AlunoRegistrarDto alunoDto)
         {

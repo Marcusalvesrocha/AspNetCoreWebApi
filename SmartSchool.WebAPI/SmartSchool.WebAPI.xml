@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.WebAPI.Controllers.AlunoController">
+            
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.#ctor(SmartSchool.WebAPI.Data.IRepository,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get">
+            <summary>
+                Método responsável por retornar todos os alunos
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.getRegister">
+            <summary>
+                Método responsável por retornar um AlunoDTO
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.GetById(System.Int32)">
+            <summary>
+                Método responsável por retornar um Auno por ID
+            </summary>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Post(SmartSchool.WebAPI.Dtos.AlunoRegistrarDto)">
+            <summary>
+                Método para inserir aluno
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.Dtos.AlunoDto">
+            <summary>
+             Dto de view de Aluno
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoDto.Id">
+            <summary>
+             Identificador Id do Aluno
+            </summary>
+        </member>
+        <member name="T:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto">
+            <summary>
+             Dto de view de Aluno
+            </summary>
+        </member>
+        <member name="P:SmartSchool.WebAPI.Dtos.AlunoRegistrarDto.Id">
+            <summary>
+             Identificador Id do Aluno
+            </summary>
+        </member>
+    </members>
+</doc>
