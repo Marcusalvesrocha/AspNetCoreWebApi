@@ -6,14 +6,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.Dtos;
+using SmartSchool.WebAPI.V2.Dtos;
 using SmartSchool.WebAPI.Models;
 
-namespace SmartSchool.WebAPI.Controllers
+namespace SmartSchool.WebAPI.V2.Controllers
 {
     ///
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0.BETA")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
         /// <summary>
-        ///     Método responsável por retornar todos os alunos
+        ///     Método responsável por retornar todos os alunos Version 2
         /// </summary>
         [HttpGet]
         public IActionResult Get()
