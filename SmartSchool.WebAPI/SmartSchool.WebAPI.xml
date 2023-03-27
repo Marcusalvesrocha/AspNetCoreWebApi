@@ -60,9 +60,9 @@
             
             </summary>
         </member>
-        <member name="M:SmartSchool.WebAPI.V2.Controllers.AlunoController.Get">
+        <member name="M:SmartSchool.WebAPI.V2.Controllers.AlunoController.Get(SmartSchool.WebAPI.Helpers.PageParams)">
             <summary>
-                Método responsável por retornar todos os alunos Version 2
+                Método responsável por retornar todos os alunos Version 2 - Async
             </summary>
         </member>
         <member name="M:SmartSchool.WebAPI.V2.Controllers.AlunoController.getRegister">

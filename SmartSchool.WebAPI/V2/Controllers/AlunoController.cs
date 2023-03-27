@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.V2.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.Helpers;
 
 namespace SmartSchool.WebAPI.V2.Controllers
 {
@@ -29,14 +30,18 @@ namespace SmartSchool.WebAPI.V2.Controllers
         }
 
         /// <summary>
-        ///     Método responsável por retornar todos os alunos Version 2
+        ///     Método responsável por retornar todos os alunos Version 2 - Async
         /// </summary>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
-            var alunos = _repository.GetAllAlunos(true);
+            var alunos = await _repository.GetAllAlunosAsync(pageParams, true);
+
+            var alunosResult = _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+
+            Response.AddPagination(alunos.CurrentPage, alunos.PageSize, alunos.TotalCount, alunos.TotalPage);
             
-            return Ok(_mapper.Map<IEnumerable<AlunoDto>>(alunos));
+            return Ok(alunosResult);
         }
 
         /// <summary>
